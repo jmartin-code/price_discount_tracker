@@ -1,13 +1,15 @@
 {
   "name": "price_tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is an Amazon price tracker",
   "main": "index.js",
   "scripts": {
-    "start": "server"
+    "build": "webpack",
+    "start-client": "npm run build -- --watch --mode=development",
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jonathan Martinez",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
@@ -19,7 +21,12 @@
     "sequelize": "^6.9.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "babel-loader": "^8.2.3",
     "nodemon": "^2.0.14",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "webpack": "^5.61.0",
     "webpack-cli": "^4.9.1"
   }

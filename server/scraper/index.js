@@ -17,7 +17,8 @@ const scrapper = async (url) => {
         return {
             itemName,
             itemImage,
-            itemPrice
+            itemPrice,
+            itemLink: url
         }
     })
     await browser.close()
