@@ -7,18 +7,15 @@ const SET_ITEMS = 'SET_ITEMS'
 ///////// Action Creators ////////
 const setitems = items => {
     return {
-        type: SET_ITMES,
+        type: SET_ITEMS,
         items
     }
 }
 
-
 //////////// Thunks  ///////////
-export const fetchItems = () => {
-    console.log('testing')
-    return async (dispatch) => {
-
-    }
+export const fetchItems = () => async (dispatch) => {
+    const { data } = await axios.get('/api/items')
+    return dispatch(setitems(data))
 }
 
 /////////// Reducer ////////////
