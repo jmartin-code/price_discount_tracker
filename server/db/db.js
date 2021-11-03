@@ -8,6 +8,6 @@ if (process.env.DATABASE_URL) {
     };
 }
 
-const db = new Sequelize(process.env.DATABASE_URL || 'postgres://postgres:fullstack25@localhost/test', { logging: false })
+const db = new Sequelize(process.env.DATABASE_URL || 'postgres://postgres:fullstack25@localhost/test', { logging: true })
 
 module.exports = db;

@@ -3,8 +3,7 @@ const Item = require('./models/item')
 
 ////////// Associations Here /////////////
 
-
-const data = [
+const sample = [
     {
         name: "Hanes Men's EcoSmart Sweatshirt",
         link: "https://www.amazon.com/Hanes-EcoSmart-Fleece-Sweatshirt-Small/dp/B072K68D77/",
@@ -23,12 +22,12 @@ const data = [
 
 const syncAndSeed = async () => {
     try {
-        await Promise.all(data.map(item => Item.create(item)))
 
         await db.authenticate();
         console.log('DB authenticated')
         await db.sync({ force: true })
         console.log('DB Ready!')
+        await Promise.all(sample.map(item => Item.create(item)))
     }
     catch (err) {
         console.log(err)

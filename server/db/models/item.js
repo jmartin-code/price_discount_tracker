@@ -19,3 +19,5 @@ const Item = db.define('item', {
         type: DECIMAL
     }
 })
+
+module.exports = Item
