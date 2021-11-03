@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-server": "nodemon server"
+    "start": "server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "node-cron": "^3.0.0",
+    "nodemailer": "^6.7.0",
+    "numeral": "^2.0.6",
     "pg": "^8.7.1",
     "puppeteer": "^10.4.0",
     "sequelize": "^6.9.0"

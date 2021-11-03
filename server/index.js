@@ -10,6 +10,41 @@ app.get('/', (req, res) => {
 
 // error handler
 
+/////// Scraping and Emailing section /////////////
+const puppeteer = require('puppeteer')
+const num = require('numeral')
+const nodemailer = require('nodemailer')
+const cron = require('node-cron')
+
+const scrapper = async (url) => {
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto(url);
+
+    const titleSelector = '#productTitle'
+    await page.waitForSelector(titleSelector)
+    const res = await page.evaluate(() => {
+        const itemName = document.querySelector('#productTitle').innerText;
+        const itemImage = document.querySelector("#imgTagWrapperId > img").src
+        const itemPrice = parseFloat(document.querySelector('span.a-price > span').innerText.replace(/[^0-9.-]+/g, ""));
+
+        return {
+            itemName,
+            itemImage,
+            itemPrice
+        }
+    })
+    console.log(res)
+    await browser.close()
+}
+
+///Sony camera
+// scrapper('https://www.amazon.com/Sony-Full-Frame-Mirrorless-Interchangeable-Camera/dp/B09JZT6YK5/')
+
+/// Sweater
+scrapper('https://www.amazon.com/Hanes-EcoSmart-Fleece-Sweatshirt-Small/dp/B072K68D77/')
+
+
 ///////////// DB Section ///////////////
 const { Sequelize, STRING, TEXT, DECIMAL } = require('sequelize')
 const db = new Sequelize(process.env.DATABASE_URL || 'postgres://postgres:fullstack25@localhost/test', { logging: false })
@@ -47,6 +82,7 @@ const Item = db.define('item', {
 })
 
 ///////// Associations //////////////
+
 
 const syncAndSeed = async () => {
     try {
