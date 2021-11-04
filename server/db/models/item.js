@@ -7,7 +7,8 @@ const Item = db.define('item', {
         type: STRING
     },
     link: {
-        type: TEXT
+        type: TEXT,
+        allowNull: false
     },
     imageURL: {
         type: TEXT
@@ -17,6 +18,9 @@ const Item = db.define('item', {
     },
     targetPrice: {
         type: DECIMAL
+    },
+    email: {
+        type: STRING
     }
 })
 

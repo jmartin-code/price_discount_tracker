@@ -8,6 +8,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import { Box } from '@mui/system';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import EditIcon from '@mui/icons-material/Edit';
+import numeral from 'numeral';
+
 
 function itemCard({ item }) {
 
@@ -18,6 +20,8 @@ function itemCard({ item }) {
         console.log('update')
     }
 
+    //////// Currency Default ////////
+    numeral.defaultFormat('$0,0.00');
 
     return (
         <Grid item xs={12} sm={6}>
@@ -32,16 +36,21 @@ function itemCard({ item }) {
                     </Button>)}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <img src={item.imageURL} height='50' />
-                    <Typography sx={{ ml: 2 }}>
-                        {item.name}
-                    </Typography>
+                    <Box sx={{ overflow: 'hidden' }}>
+                        <Typography noWrap sx={{ ml: 2 }}>
+                            {item.name}
+                        </Typography>
+                        <Typography noWrap sx={{ ml: 2 }}>
+                            {item.email}
+                        </Typography>
+                    </Box>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', mt: 2 }}>
                     <Typography variant='body1'>
-                        Price: ${item.price}
+                        Price: {numeral(item.price).format()}
                     </Typography>
                     <Typography variant='body1'>
-                        Target Price: ${item.targetPrice}
+                        Target Price: {numeral(item.targetPrice).format()}
                     </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>

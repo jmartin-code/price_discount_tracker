@@ -27,6 +27,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
+    "@mui/lab": "*",
     "axios": "^0.24.0",
     "babel-loader": "^8.2.3",
     "nodemon": "^2.0.14",
