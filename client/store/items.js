@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-
 /////////// Action Type //////////
 const SET_ITEMS = 'SET_ITEMS'
 const ADD_ITEM = 'ADD_ITEM'
+const DELETE_ITEM = 'DELETE_ITEM'
 
 ///////// Action Creators ////////
 const setitems = items => {
@@ -16,12 +16,18 @@ const setitems = items => {
 const itempost = item => {
     return {
         type: ADD_ITEM,
-        items
+        item
+    }
+}
+
+const itemdelete = item => {
+    return {
+        type: DELETE_ITEM,
+        item
     }
 }
 
 //////////// Thunks  ///////////
-
 export const fetchItems = () => async (dispatch) => {
     const { data } = await axios.get('/api/items')
     dispatch(setitems(data))
@@ -29,8 +35,12 @@ export const fetchItems = () => async (dispatch) => {
 
 export const postItem = (item) => async (dispatch) => {
     const { data } = await axios.post('/api/items', item)
-    console.log(data)
-    // return dispatch(setitems(data))
+    dispatch(itempost(data))
+}
+
+export const deleteItem = (itemId) => async (dispatch) => {
+    const { data } = await axios.delete(`/api/items/${itemId}`)
+    dispatch(itemdelete(data))
 }
 
 /////////// Reducer ////////////
@@ -40,6 +50,8 @@ export default function (state = [], action) {
             return action.items
         case ADD_ITEM:
             return [action.item, ...state]
+        case DELETE_ITEM:
+            return state.filter(item => item.id !== action.item.id)
         default:
             return state
     }

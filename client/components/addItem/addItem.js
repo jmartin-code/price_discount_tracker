@@ -32,8 +32,14 @@ function addItem() {
             setcreating(true)
             await dispatch(postItem(input));
             setcreating(false)
+            setinput({
+                url: '',
+                targetPrice: '',
+                email: ''
+            })
         }
         catch (err) {
+            setcreating(false)
             console.log(err.response)
         }
     }
@@ -42,7 +48,7 @@ function addItem() {
         <>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Button variant="contained" startIcon={<AddIcon />} sx={{ borderRadius: 5 }}>
-                    Add Item New Item To Track
+                    Add New Item To Track
                 </Button>
             </Box>
             <Container maxWidth='xs'>

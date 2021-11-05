@@ -9,12 +9,15 @@ import { Box } from '@mui/system';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import EditIcon from '@mui/icons-material/Edit';
 import numeral from 'numeral';
+import { useDispatch } from 'react-redux';
+import { deleteItem } from '../../store';
 
 
 function itemCard({ item }) {
+    const dispatch = useDispatch()
 
-    const handleRemove = () => {
-        console.log('remove')
+    const handleRemove = (itemId) => {
+        dispatch(deleteItem(itemId))
     }
     const handleUpdate = () => {
         console.log('update')
@@ -26,7 +29,7 @@ function itemCard({ item }) {
     return (
         <Grid item xs={12} sm={6}>
             <Paper sx={{ p: 2, ':hover': { boxShadow: 8 } }}>
-                {item.targetPrice < item.price ? (
+                {item.targetPrice > item.price ? (
                     <Button href={item.link} target="_blank" rel="noopener noreferrer" variant="outlined" color="success" fullWidth endIcon={<CheckIcon />} sx={{ m: 1, borderRadius: 5 }}>
                         It is time to buy!
                     </Button>
@@ -55,7 +58,7 @@ function itemCard({ item }) {
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
                     <Chip label='Update' color="primary" size="small" icon={<EditIcon />} sx={{ mx: 1 }} onClick={handleUpdate} />
-                    <Chip label='Remove' color="error" size="small" icon={<HighlightOffIcon />} sx={{ mx: 1 }} onClick={handleRemove} />
+                    <Chip label='Remove' color="error" size="small" icon={<HighlightOffIcon />} sx={{ mx: 1 }} onClick={() => handleRemove(item.id)} />
                 </Box>
             </Paper>
         </Grid>
