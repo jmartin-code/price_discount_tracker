@@ -53,8 +53,6 @@ router.put('/', async (req, res, next) => {
             item.update({ email: email, targetPrice: targetPrice })
         }
         
-        
-        
         let priceInfo;
         if (item.price < item.targetPrice) {
             priceInfo = 'Item price hit your target price! Time to buy!'
