@@ -26,10 +26,14 @@ function itemCard({ item, handleOpenForm }) {
     //////// Currency Default ////////
     numeral.defaultFormat('$0,0.00');
 
+    ///////// Convert string to number for comparison /////
+    const targetPrice = item.targetPrice * 1
+    const currentPrice = item.price * 1
+
     return (
         <Grid item xs={12} sm={6}>
             <Paper sx={{ p: 2, ':hover': { boxShadow: 8 } }}>
-                {item.targetPrice >= item.price ? (
+                {targetPrice >= currentPrice ? (
                     <Button href={item.link} target="_blank" rel="noopener noreferrer" variant="outlined" color="success" fullWidth endIcon={<CheckIcon />} sx={{ m: 1, borderRadius: 5 }}>
                         It is time to buy!
                     </Button>

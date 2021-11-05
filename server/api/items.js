@@ -31,7 +31,7 @@ router.post('/', async (req, res, next) => {
         }
         const status = 'Your are monitoring a new item:'
         
-        sendEmail(item, priceInfo, status)
+        await sendEmail(item, priceInfo, status)
         
         res.status(201).send(item)
     } catch (err) {
@@ -47,10 +47,10 @@ router.put('/', async (req, res, next) => {
         if (item.link !== url) {
             console.log('testing')
             const { itemName, itemImage, itemPrice } = await scrapper(url);
-            item.update({ link: url, email: email, targetPrice: targetPrice, name: itemName, imageURL: itemImage, price: itemPrice })
+            await item.update({ link: url, email: email, targetPrice: targetPrice, name: itemName, imageURL: itemImage, price: itemPrice })
         }
         else {
-            item.update({ email: email, targetPrice: targetPrice })
+            await item.update({ email: email, targetPrice: targetPrice })
         }
         
         let priceInfo;
@@ -62,7 +62,7 @@ router.put('/', async (req, res, next) => {
         }
         
         const status = 'You updated an item:'
-        sendEmail(item, priceInfo, status)
+        await sendEmail(item, priceInfo, status)
         
         res.status(201).send(item)
     } catch (err) {

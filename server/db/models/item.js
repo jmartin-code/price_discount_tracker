@@ -8,7 +8,10 @@ const Item = db.define('item', {
     },
     link: {
         type: TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isUrl: true
+        }
     },
     imageURL: {
         type: TEXT
@@ -17,10 +20,18 @@ const Item = db.define('item', {
         type: DECIMAL
     },
     targetPrice: {
-        type: DECIMAL
+        type: DECIMAL,
+        allowNull: false,
+        validate: {
+            isNumeric: true
+        }
     },
     email: {
-        type: STRING
+        type: STRING,
+        allowNull: false,
+        validate: {
+            isEmail: true
+        }
     }
 })
 

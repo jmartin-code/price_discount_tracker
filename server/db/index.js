@@ -8,7 +8,7 @@ const sample = [
         name: "Hanes Men's EcoSmart Sweatshirt",
         link: "https://www.amazon.com/Hanes-EcoSmart-Fleece-Sweatshirt-Small/dp/B072K68D77/",
         imageURL: 'https://images-na.ssl-images-amazon.com/images/I/81fBr0EGoQL.__AC_SY445_SX342_QL70_FMwebp_.jpg',
-        price: 4.99,
+        price: 10.99,
         targetPrice: 5.00,
         email: 'elcarnival1@gmail.com'
     },

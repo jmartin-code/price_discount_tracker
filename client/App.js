@@ -7,6 +7,8 @@ import { fetchItems } from './store'
 import Items from './components/items/items'
 import AddItem from './components/addItem/addItem'
 import Footer from './components/footer/Footer'
+import Navbar from './components/navbar/Navbar'
+import { CssBaseline } from '@mui/material'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -22,6 +24,8 @@ const App = () => {
 
     return (
         <>
+            <CssBaseline />
+            <Navbar />
             <AddItem />
             <Items items={items} />
             <Footer />
