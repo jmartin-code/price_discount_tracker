@@ -1,6 +1,4 @@
 const puppeteer = require('puppeteer')
-const nodemailer = require('nodemailer')
-const cron = require('node-cron')
 
 const scrapper = async (url) => {
     const browser = await puppeteer.launch({ headless: true });

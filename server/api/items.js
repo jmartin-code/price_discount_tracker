@@ -22,16 +22,50 @@ router.post('/', async (req, res, next) => {
 
         const item = await Item.create({ name: itemName, imageURL: itemImage, link: url, targetPrice: targetPrice, email: email, price: itemPrice })
 
-        let info;
+        let priceInfo;
         if (item.price < item.targetPrice) {
-            info = 'Item price hit your target price! Time to buy!'
+            priceInfo = 'Item price hit your target price! Time to buy!'
         }
         else {
-            info = "Item price is above your target price. Let's wait for a better deal!"
+            priceInfo = "Item price is above your target price. Let's wait for a better deal!"
         }
+        const status = 'Your are monitoring a new item:'
+        
+        sendEmail(item, priceInfo, status)
+        
+        res.status(201).send(item)
+    } catch (err) {
+        next(err)
+    }
+})
 
-        sendEmail(item, info)
-
+router.put('/', async (req, res, next) => {
+    try {
+        const { id, url, email, targetPrice } = req.body
+        const item = await Item.findByPk(id);
+        
+        if (item.link !== url) {
+            console.log('testing')
+            const { itemName, itemImage, itemPrice } = await scrapper(url);
+            item.update({ link: url, email: email, targetPrice: targetPrice, name: itemName, imageURL: itemImage, price: itemPrice })
+        }
+        else {
+            item.update({ email: email, targetPrice: targetPrice })
+        }
+        
+        
+        
+        let priceInfo;
+        if (item.price < item.targetPrice) {
+            priceInfo = 'Item price hit your target price! Time to buy!'
+        }
+        else {
+            priceInfo = "Item price is above your target price. Let's wait for a better deal!"
+        }
+        
+        const status = 'You updated an item:'
+        sendEmail(item, priceInfo, status)
+        
         res.status(201).send(item)
     } catch (err) {
         next(err)

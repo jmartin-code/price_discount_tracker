@@ -6,6 +6,7 @@ import { fetchItems } from './store'
 ///////// COMPONENTS //////////////
 import Items from './components/items/items'
 import AddItem from './components/addItem/addItem'
+import Footer from './components/footer/Footer'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -23,19 +24,9 @@ const App = () => {
         <>
             <AddItem />
             <Items items={items} />
+            <Footer />
         </>
     )
 }
 
 export default App
-
-// {
-//     "id": 2,
-//     "name": "Sony Alpha 7 IV Full-Frame Mirrorless Interchangeable Lens Camera",
-//     "link": "https://www.amazon.com/Sony-Full-Frame-Mirrorless-Interchangeable-Camera/dp/B09JZT6YK5/",
-//     "imageURL": "https://images-na.ssl-images-amazon.com/images/I/71LPbU9sO5L.__AC_SY300_SX300_QL70_FMwebp_.jpg",
-//     "price": "2499.99",
-//     "targetPrice": "2000",
-//     "createdAt": "2021-11-03T16:55:20.704Z",
-//     "updatedAt": "2021-11-03T16:55:20.704Z"
-//   }

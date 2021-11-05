@@ -1,94 +1,34 @@
 import React, { useState } from 'react'
 
+////////// UI //////////////
 import AddIcon from '@mui/icons-material/Add';
-import { Button, Container, TextField } from '@mui/material'
+import { Button, Dialog } from '@mui/material'
 import { Box } from '@mui/system'
-import LoadingButton from '@mui/lab/LoadingButton';
 
-import { useDispatch } from 'react-redux';
-
-import { postItem } from '../../store'
+//////////// COMPONENT /////////////
+import Form from './From'
 
 function addItem() {
-    const [input, setinput] = useState({
-        url: '',
-        targetPrice: '',
-        email: ''
-    })
+    const [openForm, setopenForm] = useState(false)
 
-    const [creating, setcreating] = useState(false)
-
-    const dispatch = useDispatch()
-
-    const handleChange = (evt) => {
-        const name = evt.target.name;
-        const value = evt.target.value
-        setinput({ ...input, [name]: value })
+    const handleOpenForm = () => {
+        setopenForm(true)
     }
 
-    const handleSubmit = async (evt) => {
-        evt.preventDefault()
-        try {
-            setcreating(true)
-            await dispatch(postItem(input));
-            setcreating(false)
-            setinput({
-                url: '',
-                targetPrice: '',
-                email: ''
-            })
-        }
-        catch (err) {
-            setcreating(false)
-            console.log(err.response)
-        }
+    const handleCloseForm = () => {
+        setopenForm(false)
     }
 
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Button variant="contained" startIcon={<AddIcon />} sx={{ borderRadius: 5 }}>
+                <Button onClick={handleOpenForm} variant="contained" startIcon={<AddIcon />} sx={{ borderRadius: 5 }}>
                     Add New Item To Track
                 </Button>
             </Box>
-            <Container maxWidth='xs'>
-                <Box component='form' onSubmit={handleSubmit}>
-                    <TextField
-                        margin='normal'
-                        name='url'
-                        label='Item URL'
-                        size="small"
-                        fullWidth
-                        value={input.url}
-                        onChange={handleChange}
-                    // required
-                    />
-                    <TextField
-                        margin='normal'
-                        name='targetPrice'
-                        label='Target Price'
-                        size="small"
-                        fullWidth
-                        value={input.targetPrice}
-                        onChange={handleChange}
-                    // required
-                    />
-                    <TextField
-                        margin='normal'
-                        name='email'
-                        label='Email'
-                        size="small"
-                        fullWidth
-                        value={input.email}
-                        onChange={handleChange}
-                    // required
-                    />
-                    <LoadingButton disabled={!input.email && !input.targetPrice && !input.url} type='submit' loadingPosition="start"
-                        startIcon={<AddIcon />} fullWidth variant='contained' loading={creating} sx={{ borderRadius: 5, mt: 1 }}>
-                        Add Item
-                    </LoadingButton>
-                </Box>
-            </Container>
+            <Dialog open={openForm} onClose={handleCloseForm}>
+                <Form title={'ADD NEW ITEM'} handleCloseForm={handleCloseForm} />
+            </Dialog>
         </>
     )
 }

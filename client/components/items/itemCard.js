@@ -13,14 +13,14 @@ import { useDispatch } from 'react-redux';
 import { deleteItem } from '../../store';
 
 
-function itemCard({ item }) {
+function itemCard({ item, handleOpenForm }) {
     const dispatch = useDispatch()
 
     const handleRemove = (itemId) => {
         dispatch(deleteItem(itemId))
     }
-    const handleUpdate = () => {
-        console.log('update')
+    const handleUpdate = (item) => {
+        handleOpenForm(item)
     }
 
     //////// Currency Default ////////
@@ -29,7 +29,7 @@ function itemCard({ item }) {
     return (
         <Grid item xs={12} sm={6}>
             <Paper sx={{ p: 2, ':hover': { boxShadow: 8 } }}>
-                {item.targetPrice > item.price ? (
+                {item.targetPrice >= item.price ? (
                     <Button href={item.link} target="_blank" rel="noopener noreferrer" variant="outlined" color="success" fullWidth endIcon={<CheckIcon />} sx={{ m: 1, borderRadius: 5 }}>
                         It is time to buy!
                     </Button>
@@ -49,15 +49,15 @@ function itemCard({ item }) {
                     </Box>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', mt: 2 }}>
-                    <Typography variant='body1'>
+                    <Typography align='center'>
                         Price: {numeral(item.price).format()}
                     </Typography>
-                    <Typography variant='body1'>
+                    <Typography align='center'>
                         Target Price: {numeral(item.targetPrice).format()}
                     </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
-                    <Chip label='Update' color="primary" size="small" icon={<EditIcon />} sx={{ mx: 1 }} onClick={handleUpdate} />
+                    <Chip label='Update' color="primary" size="small" icon={<EditIcon />} sx={{ mx: 1 }} onClick={() => handleUpdate(item)} />
                     <Chip label='Remove' color="error" size="small" icon={<HighlightOffIcon />} sx={{ mx: 1 }} onClick={() => handleRemove(item.id)} />
                 </Box>
             </Paper>
