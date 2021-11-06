@@ -1,5 +1,9 @@
 const { Sequelize } = require('sequelize')
 
+const config = {
+    logging: false
+};
+
 if (process.env.DATABASE_URL) {
     config.dialectOptions = {
         ssl: {
@@ -8,6 +12,6 @@ if (process.env.DATABASE_URL) {
     };
 }
 
-const db = new Sequelize(process.env.DATABASE_URL || 'postgres://postgres:fullstack25@localhost/test', { logging: true })
+const db = new Sequelize(process.env.DATABASE_URL || 'postgres://postgres:fullstack25@localhost/test', config)
 
 module.exports = db;
