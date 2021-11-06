@@ -3,10 +3,22 @@ const sendEmail = require('../email')
 const { models: { Item } } = require('../db');
 const scrapper = require('../scraper');
 
+//////////// WS ////////////////////
+// const ws = require('ws')
+// const server = require('../index')
+// const webSocket = new ws.Server({ server })
+// const webSocket = require('../index')
+// let sockets = [];
+
+
 const runCron = () => {
-    cron.schedule('8 * * * * *', async () => {
+    // webSocket.on('connection', (socket) => {
+    //     sockets.push(socket);
+    cron.schedule('* * * * *', async () => {
         try {
-            console.log('cron started')
+            console.log('cron running')
+            // connected = socket.connected
+            // console.log(sockets.length)
             const items = await Item.findAll() || [];
             const updatedItems = []
 
@@ -15,15 +27,16 @@ const runCron = () => {
                 const item = items[i]
                 const scrapeItem = await scrapper(item.link)
 
-                if ((item.price * 1) !== scrapeItem.itemPrice) {
+                if ((item.price * 1) !== scrapeItem.itemPrice * 1) {
                     console.log('item price changed')
                     await item.update({ price: scrapeItem.itemPrice })
                     updatedItems.push(item)
+                    // socket.send(JSON.stringify(item))
                 }
             }
 
             ///////// If there is updatedItems, updated the redux store //////////
-            
+            // console.log('Run automatic')
 
             ////////// If the price is lower than target price, send eamil to user /////
             for (let i = 0; i < updatedItems.length; i++) {
@@ -38,10 +51,22 @@ const runCron = () => {
             }
         }
         catch (error) {
+            console.log(error)
             console.log('something went wrong with cron automation')
         }
-
     });
+
+    // socket.on("disconnect", () => {
+    //     console.log('disconected')
+    // });
+
+    /////// remove disconnected socket ////////
+    //     socket.on('close', () => {
+    //         task1.stop();
+    //         sockets = sockets.filter(s => s !== socket);
+    //     });
+    // });
+
 }
 
 module.exports = runCron

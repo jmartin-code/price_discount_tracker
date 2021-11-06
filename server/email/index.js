@@ -17,7 +17,7 @@ const sendEmail = async (item, priceInfo, status) => {
             to: `${item.email}`,
             subject: `Amazon Price Monitor - ${item.name}`,
             text: `Amazon Price Monitor - ${item.name}`,
-            html: `<body><h3>Amazon Price Monitor</h3> <p>${status} ${item.name}</p><h4>${priceInfo}</h4><p>Here is the link for the item: ${item.link}</p><p>*****Please do not reply to this email. This email is only used to provide automatic information.*****</p></body>`
+            html: `<body><h3>Amazon Price Monitor</h3> <p>${status} ${item.name}</p><h4>Target price: $${item.targetPrice}</h4><h4>Current Item price: $${item.price}</h4><h4>${priceInfo}</h4><p>Here is the link for the item: ${item.link}</p><p>*****Please do not reply to this email. This email is only used to provide automatic information.*****</p></body>`
         })
         console.log('Email sent successfully')
     }

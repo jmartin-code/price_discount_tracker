@@ -18,7 +18,7 @@ function From(props) {
     const [input, setinput] = useState({
         url: item.link || '',
         targetPrice: item.targetPrice || '',
-        email: item.email || ''
+        email: item.email || '',
     })
 
     const [creating, setcreating] = useState(false)
