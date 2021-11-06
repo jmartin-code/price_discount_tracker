@@ -4,7 +4,7 @@ const config = {
     logging: false
 };
 
-if (process.env.DATABASE_URL) {
+if (process.env.HEROKU_POSTGRESQL_NAVY_URL) {
     config.dialectOptions = {
         ssl: {
             rejectUnauthorized: false
@@ -12,6 +12,6 @@ if (process.env.DATABASE_URL) {
     };
 }
 
-const db = new Sequelize(process.env.DATABASE_URL || 'postgres://postgres:fullstack25@localhost/test', config)
+const db = new Sequelize(process.env.HEROKU_POSTGRESQL_NAVY_URL || 'postgres://postgres:fullstack25@localhost/test', config)
 
 module.exports = db;
