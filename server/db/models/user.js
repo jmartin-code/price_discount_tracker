@@ -1,5 +1,5 @@
-
-
+////////// Work in progress ////////////
+///////////// User Model //////////////
 const User = db.define('user', {
     name: {
         type: STRING
@@ -12,3 +12,5 @@ const User = db.define('user', {
         type: STRING,
     }
 })
+
+module.exports = User

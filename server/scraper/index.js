@@ -9,7 +9,6 @@ const scrapper = async (url) => {
 
     const titleSelector = '#productTitle'
     await page.waitForSelector(titleSelector)
-    // await page.waitForTimeout(5000)
     const res = await page.evaluate(() => {
         const itemName = document.querySelector('#productTitle').innerText;
         const itemImage = document.querySelector("#imgTagWrapperId > img").src

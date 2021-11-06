@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { fetchItems, itemupdate } from './store'
+import { fetchItems } from './store'
 
 ///////// COMPONENTS //////////////
 import Items from './components/items/items'
@@ -12,14 +12,7 @@ import { CssBaseline } from '@mui/material'
 
 
 const App = () => {
-    const socket = new WebSocket(window.document.location.origin.replace('http', 'ws'));
-    socket.addEventListener('message', ({ data }) => {
-        const item = JSON.parse(data)
-        dispatch(itemupdate(item))
-        // console.log(JSON.parse(data))
-        // store.dispatch(item);
-    })
-
+    
     const dispatch = useDispatch()
     const items = useSelector(state => state.items)
     useEffect(() => {
@@ -30,7 +23,7 @@ const App = () => {
             console.log(error)
         }
     }, [])
-
+    
     return (
         <>
             <CssBaseline />
@@ -43,3 +36,12 @@ const App = () => {
 }
 
 export default App
+
+/////// Testing socket.io and websocket io ///////////////////////
+// const socket = new WebSocket(window.document.location.origin.replace('http', 'ws'));
+// socket.addEventListener('message', ({ data }) => {
+//     const item = JSON.parse(data)
+//     dispatch(itemupdate(item))
+//     // console.log(JSON.parse(data))
+//     // store.dispatch(item);
+// })

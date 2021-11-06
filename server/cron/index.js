@@ -3,22 +3,10 @@ const sendEmail = require('../email')
 const { models: { Item } } = require('../db');
 const scrapper = require('../scraper');
 
-//////////// WS ////////////////////
-// const ws = require('ws')
-// const server = require('../index')
-// const webSocket = new ws.Server({ server })
-// const webSocket = require('../index')
-// let sockets = [];
-
-
 const runCron = () => {
-    // webSocket.on('connection', (socket) => {
-    //     sockets.push(socket);
     cron.schedule('* * * * *', async () => {
         try {
             console.log('cron running')
-            // connected = socket.connected
-            // console.log(sockets.length)
             const items = await Item.findAll() || [];
             const updatedItems = []
 
@@ -31,14 +19,9 @@ const runCron = () => {
                     console.log('item price changed')
                     await item.update({ price: scrapeItem.itemPrice })
                     updatedItems.push(item)
-                    // socket.send(JSON.stringify(item))
                 }
             }
-
-            ///////// If there is updatedItems, updated the redux store //////////
-            // console.log('Run automatic')
-
-            ////////// If the price is lower than target price, send eamil to user /////
+            ////////// send email if price is lower or equal to target price ///////////////////
             for (let i = 0; i < updatedItems.length; i++) {
                 const item = updatedItems[i]
 
@@ -55,18 +38,29 @@ const runCron = () => {
             console.log('something went wrong with cron automation')
         }
     });
-
-    // socket.on("disconnect", () => {
-    //     console.log('disconected')
-    // });
-
-    /////// remove disconnected socket ////////
-    //     socket.on('close', () => {
-    //         task1.stop();
-    //         sockets = sockets.filter(s => s !== socket);
-    //     });
-    // });
-
 }
 
 module.exports = runCron
+
+/////////// Experimenting with websocket and socket.io for realtime monitoring //////////////////
+    //////////// WS ////////////////////
+    // const ws = require('ws')
+    // const server = require('../index')
+    // const webSocket = new ws.Server({ server })
+    // const webSocket = require('../index')
+    // let sockets = [];
+    // webSocket.on('connection', (socket) => {
+        //     sockets.push(socket);
+        // socket.on("disconnect", () => {
+            //     console.log('disconected')
+            // });
+
+            /////// remove disconnected socket ////////
+            //     socket.on('close', () => {
+                //         task1.stop();
+                //         sockets = sockets.filter(s => s !== socket);
+                //     });
+                // });
+                // connected = socket.connected
+                // console.log(sockets.length)
+                // socket.send(JSON.stringify(item))

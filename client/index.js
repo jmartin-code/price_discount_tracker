@@ -10,11 +10,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 )
-
-
-
-
-// import { Router } from 'react-router-dom'
-// import history from './history'
-{/* <Router history={history}> */ }
-//  </Router>

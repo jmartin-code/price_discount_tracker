@@ -1,14 +1,5 @@
 import axios from 'axios'
 
-// const socket = new WebSocket(window.document.location.origin.replace('http', 'ws'));
-
-// socket.addEventListener('message', ({ data }) => {
-//     const item = JSON.parse(data)
-//     dispatch(itemupdate(item))
-//     // console.log(JSON.parse(data))
-//     // store.dispatch(item);
-// })
-
 /////////// Action Type //////////
 const SET_ITEMS = 'SET_ITEMS'
 const ADD_ITEM = 'ADD_ITEM'
