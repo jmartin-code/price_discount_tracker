@@ -4,7 +4,7 @@ const { models: { Item } } = require('../db');
 const scrapper = require('../scraper');
 
 const runCron = () => {
-    cron.schedule('* */3 * * *', async () => {
+    cron.schedule('* */4 * * *', async () => {
         try {
             console.log('cron running')
             const items = await Item.findAll() || [];
