@@ -22,10 +22,11 @@
     "nodemailer": "^6.7.0",
     "pg": "^8.7.1",
     "puppeteer": "^10.4.0",
-    "sequelize": "^6.9.0"
+    "sequelize": "^6.9.0",
+    "axios": "^0.24.0",
+    "numeral": "^2.0.6"
   },
   "devDependencies": {
-    "numeral": "^2.0.6",
     "socket.io": "^4.3.1",
     "socket.io-client": "^4.3.2",
     "ws": "^7.4.6",
@@ -36,7 +37,6 @@
     "@babel/core": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
     "@mui/lab": "*",
-    "axios": "^0.24.0",
     "babel-loader": "^8.2.3",
     "nodemon": "^2.0.14",
     "react": "^17.0.2",
