@@ -1,7 +1,10 @@
 {
-  "name": "price_tracker",
+  "name": "pricemonitor",
   "version": "1.0.0",
-  "description": "This is an Amazon price tracker",
+  "description": "This is an amazon price monitor app",
+  "engines": {
+    "node": "15.12.0"
+  },
   "main": "index.js",
   "scripts": {
     "build": "webpack",
