@@ -32,7 +32,7 @@ function itemCard({ item, handleOpenForm }) {
 
     return (
         <Grid item xs={12} sm={6}>
-            <Paper sx={{ p: 2, ':hover': { boxShadow: 8 } }}>
+            <Paper sx={{ p: 2, ':hover': { boxShadow: 4 } }}>
                 {targetPrice >= currentPrice ? (
                     <Button href={item.link} target="_blank" rel="noopener noreferrer" variant="outlined" color="success" fullWidth endIcon={<CheckIcon />} sx={{ m: 1, borderRadius: 5 }}>
                         It is time to buy!
@@ -60,9 +60,9 @@ function itemCard({ item, handleOpenForm }) {
                         Target Price: {numeral(item.targetPrice).format()}
                     </Typography>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
-                    <Chip label='Update' color="primary" size="small" icon={<EditIcon />} sx={{ mx: 1 }} onClick={() => handleUpdate(item)} />
-                    <Chip label='Remove' color="error" size="small" icon={<HighlightOffIcon />} sx={{ mx: 1 }} onClick={() => handleRemove(item.id)} />
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                    <Chip variant='outlined' label='Update' color="primary" icon={<EditIcon fontSize='small' fontSize='small' />} sx={{ mx: 1 }} onClick={() => handleUpdate(item)} />
+                    <Chip variant='outlined' label='Remove' color="error" icon={<HighlightOffIcon fontSize='small' />} sx={{ mx: 1 }} onClick={() => handleRemove(item.id)} />
                 </Box>
             </Paper>
         </Grid>

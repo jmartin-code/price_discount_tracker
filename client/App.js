@@ -8,11 +8,13 @@ import Items from './components/items/items'
 import AddItem from './components/addItem/addItem'
 import Footer from './components/footer/Footer'
 import Navbar from './components/navbar/Navbar'
-import { CssBaseline } from '@mui/material'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+
+////////////// Theme ////////////
+import { theme } from './theme'
 
 
 const App = () => {
-    
     const dispatch = useDispatch()
     const items = useSelector(state => state.items)
     useEffect(() => {
@@ -23,15 +25,15 @@ const App = () => {
             console.log(error)
         }
     }, [])
-    
+
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <CssBaseline />
             <Navbar />
             <AddItem />
             <Items items={items} />
             <Footer />
-        </>
+        </ThemeProvider>
     )
 }
 
