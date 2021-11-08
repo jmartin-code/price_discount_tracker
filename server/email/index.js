@@ -3,7 +3,7 @@ require('dotenv').config()
 
 const sendEmail = async (item, priceInfo, status) => {
     try {
-        const transporter = nodemailer.createTransport({
+        const transporter = await nodemailer.createTransport({
             host: 'smtp-relay.sendinblue.com',
             port: 587,
             auth: {
@@ -12,7 +12,7 @@ const sendEmail = async (item, priceInfo, status) => {
             }
         })
 
-        const sendResult = await transporter.sendMail({
+        await transporter.sendMail({
             from: 'AmazonPriceMonitor@developer.com',
             to: `${item.email}`,
             subject: `Amazon Price Monitor - ${item.name}`,
