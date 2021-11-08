@@ -61,8 +61,8 @@ function itemCard({ item, handleOpenForm }) {
                     </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                    <Chip variant='outlined' label='Update' color="primary" icon={<EditIcon fontSize='small' fontSize='small' />} sx={{ mx: 1 }} onClick={() => handleUpdate(item)} />
-                    <Chip variant='outlined' label='Remove' color="error" icon={<HighlightOffIcon fontSize='small' />} sx={{ mx: 1 }} onClick={() => handleRemove(item.id)} />
+                    <Chip variant='outlined' label='Update' color="primary" icon={<EditIcon sx={{ fontSize: 20 }} />} sx={{ mx: 1 }} onClick={() => handleUpdate(item)} />
+                    <Chip variant='outlined' label='Remove' color="error" icon={<HighlightOffIcon sx={{ fontSize: 20 }} />} sx={{ mx: 1 }} onClick={() => handleRemove(item.id)} />
                 </Box>
             </Paper>
         </Grid>
