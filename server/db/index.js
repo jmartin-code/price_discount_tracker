@@ -22,11 +22,19 @@ const sample = [
     },
 ]
 
+const config = {
+    force: true
+};
+
+if (process.env.HEROKU_POSTGRESQL_NAVY_URL) {
+    delete config.force
+}
+
 const syncAndSeed = async () => {
     try {
         await db.authenticate();
         console.log('DB authenticated')
-        await db.sync({ force: true })
+        await db.sync(config)
         console.log('DB Ready!')
         await Promise.all(sample.map(item => Item.create(item)))
     }
