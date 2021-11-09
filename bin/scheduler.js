@@ -1,8 +1,8 @@
-const sendEmail = require('../server/email')
+const sendEmail = require('../server/email');
 const { models: { Item } } = require('../server/db');
 const scrapper = require('../server/scraper');
 
-const runCron = async () => {
+const runHerokuSchedule = async () => {
     // cron.schedule('00 */6 * * *', async () => {
     try {
         console.log('Heroku Scheduler Running')
@@ -39,4 +39,4 @@ const runCron = async () => {
     // });
 }
 
-runCron();
+runHerokuSchedule();

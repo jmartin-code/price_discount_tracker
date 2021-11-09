@@ -36,7 +36,9 @@ const syncAndSeed = async () => {
         console.log('DB authenticated')
         await db.sync(config)
         console.log('DB Ready!')
-        await Promise.all(sample.map(item => Item.create(item)))
+        if (!process.env.HEROKU_POSTGRESQL_NAVY_URL) {
+            await Promise.all(sample.map(item => Item.create(item)))
+        }
     }
     catch (err) {
         console.log(err)
