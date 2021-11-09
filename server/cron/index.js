@@ -1,5 +1,5 @@
-const cron = require('node-cron')
-const sendEmail = require('../email')
+const cron = require('node-cron');
+const sendEmail = require('../email');
 const { models: { Item } } = require('../db');
 const scrapper = require('../scraper');
 
