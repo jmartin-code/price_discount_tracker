@@ -4,9 +4,9 @@
 ### __Link__ : https://price-monitor-deals.herokuapp.com
 
 ## <u> Technology Stack: </u>
+* Node.js
 * Javascript / React.js
 * Material UI
-* Node.js
 * Postgres SQL
 * Puppeteer
 * Nodemailer
@@ -20,6 +20,6 @@ The thought behind this app was to solve a problem that most customers face. For
 
 
 ## <u> Future Work: </u>
-* Add user authentication using JWT and/or OAuth. User will be able to see other users items, but user will only be able to update or delete their itmes. 
+* Add Socket.io or websocket to improve user expericne with realtime updates.
 
-
+* Add user authentication using JWT and/or OAuth. User will be able to see other users items, but user will only be able to update or delete their itmes.

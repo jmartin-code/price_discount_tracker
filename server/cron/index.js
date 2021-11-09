@@ -15,7 +15,7 @@ const runCron = () => {
                 const item = items[i]
                 const scrapeItem = await scrapper(item.link)
 
-                if ((item.price * 1) !== scrapeItem.itemPrice * 1) {
+                if ((item.price * 1) !== (scrapeItem.itemPrice * 1)) {
                     console.log('item price changed')
                     await item.update({ price: scrapeItem.itemPrice })
                     updatedItems.push(item)
@@ -25,7 +25,7 @@ const runCron = () => {
             for (let i = 0; i < updatedItems.length; i++) {
                 const item = updatedItems[i]
 
-                if (item.targetPrice >= item.price) {
+                if ((item.targetPrice * 1) >= (item.price * 1)) {
                     console.log('sending automatic email')
                     const priceInfo = 'Item price hit your target price! Time to buy!'
                     const status = 'This is an automatic alert for item:'
