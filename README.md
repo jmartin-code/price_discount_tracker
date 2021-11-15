@@ -18,6 +18,10 @@ This application will help users save money by monitoring prices of items in Ama
 
 The thought behind this app was to solve a problem that most customers face. For example, lots of stores might have a wish list and can send customers an email when they go on sale. But then customer have to open their email and see what the sale price is. If the price is not under what the customer is willing to pay, then the customer just wasted their time. Therefore, this app offer a solution by providing customers with the convenience and ease to bargain shop.
 
+<p align="center">
+  <img width="800" src="App-UI.png">
+</p>
+<!-- ![App User Interface](App-UI.png) -->
 
 ## <u> Future Work: </u>
 * Add Socket.io or websocket to improve user expericne with realtime updates.
