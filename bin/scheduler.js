@@ -44,6 +44,7 @@ const runHerokuSchedule = async () => {
                 console.log(error)
             }
         }
+        console.log("Heroku Scheduler complete")
     }
     catch (error) {
         console.log(error)
