@@ -11,8 +11,9 @@ const runHerokuSchedule = async () => {
 
         //////////// Check for price updates and update the item price /////////////
         for (let i = 0; i < items.length; i++) {
+            const item = items[i]
+
             try {
-                const item = items[i]
                 const scrapeItem = await scrapper(item.link)
 
                 if ((item.price * 1) !== (scrapeItem.itemPrice * 1)) {
@@ -29,9 +30,9 @@ const runHerokuSchedule = async () => {
 
         ////////// send email if price is lower or equal to target price ///////////////////
         for (let i = 0; i < updatedItems.length; i++) {
-            try {
-                const item = updatedItems[i]
+            const item = updatedItems[i]
 
+            try {
                 if ((item.targetPrice * 1) >= (item.price * 1)) {
                     console.log('sending automatic email')
                     const priceInfo = 'Item price hit your target price! Time to buy!'

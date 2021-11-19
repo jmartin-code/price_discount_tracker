@@ -12,8 +12,9 @@ const runCron = () => {
 
             //////////// Check for price updates and update the item price /////////////
             for (let i = 0; i < items.length; i++) {
+                const item = items[i]
+
                 try {
-                    const item = items[i]
                     const scrapeItem = await scrapper(item.link)
 
                     if ((item.price * 1) !== (scrapeItem.itemPrice * 1)) {
@@ -29,9 +30,9 @@ const runCron = () => {
             }
             ////////// send email if price is lower or equal to target price ///////////////////
             for (let i = 0; i < updatedItems.length; i++) {
-                try {
-                    const item = updatedItems[i]
+                const item = updatedItems[i]
 
+                try {
                     if ((item.targetPrice * 1) >= (item.price * 1)) {
                         console.log('sending automatic email')
                         const priceInfo = 'Item price hit your target price! Time to buy!'
@@ -54,7 +55,7 @@ const runCron = () => {
 
 module.exports = runCron
 
-/////////// Experimenting with websocket and socket.io for realtime monitoring //////////////////
+///////////  Testing websocket and socket.io for realtime updates //////////////////
     //////////// WS ////////////////////
     // const ws = require('ws')
     // const server = require('../index')
