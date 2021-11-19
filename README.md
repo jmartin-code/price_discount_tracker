@@ -28,4 +28,8 @@ The thought behind this app was to solve a problem that most customers face. For
 ## <u> Future Work: </u>
 * Add Socket.io or websocket to improve user expericne with realtime updates.
 
-* Add user authentication using JWT and/or OAuth. User will be able to see other users items, but user will only be able to update or delete their itmes.
+* Add user authentication using JWT and/or OAuth. User will be able to see other users items, but users will only be able to update or delete their own itmes.
+
+* Add phone text notification using phone numbers. People check their text message more regularly than their emails.
+
+* Add more stores, walmart, target, bestbuy, etc...
