@@ -9,6 +9,7 @@
 * Redux
 * Material UI
 * Postgres SQL
+* Sequelize
 * Puppeteer
 * Nodemailer
 * Node Cron Scheduler
